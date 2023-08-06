@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  sitam-site-service:
+    build:
+      context: .
+      dockerfile: Dockerfile.production
+    image: es_sitamm_site_service
+    container_name: sitamm-site-service_dev
+    env_file:
+      - .env
+    volumes:
+      - .:/app:z
+    ports:
+      - "8080:8080"
+
+  sitam-api-service:
+    image: es_sitamm_api_service
+    container_name: sitamm-api-service
+#    depends_on:
+#      - mongo
+    env_file:
+      - .env
